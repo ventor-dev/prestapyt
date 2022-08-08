@@ -12,8 +12,12 @@
 
 from __future__ import unicode_literals
 from xml.dom.minidom import getDOMImplementation
-from past.builtins import basestring
 from builtins import str
+
+try:
+    from __builtin__ import basestring
+except ImportError:
+    from past.types import basestring
 
 
 def _process(doc, tag, tag_value):

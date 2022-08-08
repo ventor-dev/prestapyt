@@ -20,9 +20,6 @@ from which I also inspired my library.
 Questions, comments? guewen.baconnier@gmail.com
 """
 
-from future.standard_library import install_aliases
-install_aliases()
-
 from urllib.parse import urlencode
 
 import warnings
@@ -33,6 +30,11 @@ from . import xml2dict
 from . import dict2xml
 
 from xml.parsers.expat import ExpatError
+
+from future.utils import PY2
+if PY2:
+    from future.standard_library import install_aliases
+    install_aliases()
 
 try:
     from packaging.version import Version
@@ -86,7 +88,7 @@ class PrestaShopWebService(object):
     """Interact with the PrestaShop WebService API, use XML for messages."""
 
     MIN_COMPATIBLE_VERSION = '1.4.0.17'
-    MAX_COMPATIBLE_VERSION = '1.7.5.2'
+    MAX_COMPATIBLE_VERSION = '1.7.8.6'
 
     def __init__(self, api_url, api_key, debug=False, session=None,
                  verbose=False):
