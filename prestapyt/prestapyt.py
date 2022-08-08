@@ -31,6 +31,8 @@ from . import dict2xml
 
 from xml.parsers.expat import ExpatError
 
+# install_aliases() makes sense only on python 2.x
+# On Python 3.x it generates deprecated warning (import imp)
 from future.utils import PY2
 if PY2:
     from future.standard_library import install_aliases
@@ -88,7 +90,8 @@ class PrestaShopWebService(object):
     """Interact with the PrestaShop WebService API, use XML for messages."""
 
     MIN_COMPATIBLE_VERSION = '1.4.0.17'
-    MAX_COMPATIBLE_VERSION = '1.7.8.6'
+    # To avoid constant version changes
+    MAX_COMPATIBLE_VERSION = '1.7.8.99'
 
     def __init__(self, api_url, api_key, debug=False, session=None,
                  verbose=False):
