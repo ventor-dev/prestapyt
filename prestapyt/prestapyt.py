@@ -20,6 +20,13 @@ from which I also inspired my library.
 Questions, comments? guewen.baconnier@gmail.com
 """
 
+# install_aliases() makes sense only on python 2.x
+# On Python 3.x it generates deprecated warning (import imp)
+from future.utils import PY2
+if PY2:
+    from future.standard_library import install_aliases
+    install_aliases()
+
 from urllib.parse import urlencode
 
 import warnings
@@ -30,13 +37,6 @@ from . import xml2dict
 from . import dict2xml
 
 from xml.parsers.expat import ExpatError
-
-# install_aliases() makes sense only on python 2.x
-# On Python 3.x it generates deprecated warning (import imp)
-from future.utils import PY2
-if PY2:
-    from future.standard_library import install_aliases
-    install_aliases()
 
 try:
     from packaging.version import Version
